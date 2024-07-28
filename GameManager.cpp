@@ -5,24 +5,25 @@ void GameManager::runGame() {
     int currPlayersIndex = 0;
     while(gameBoard.getGameState() == GameState::IN_PROGRESS_STATE){
         gameBoard.printGameBoard();
-        cout << this->players[currPlayersIndex].getPlayerName() << " please enter your curr column :";
-        int currCol;
-        cin >> currCol;
-        currCol--;
-        cout <<this->players[currPlayersIndex].getPlayerName() << " please enter your curr row :";
-        int currRow;
-        cin >> currRow;
-        currRow--;
-        while(!gameBoard.makePlayerMove(currCol,currRow,players[currPlayersIndex].getPlayerSymbol())){
-            cout << this->players[currPlayersIndex].getPlayerName() << " please enter your curr column again :";
-            cin >> currCol;
-            currCol--;
-            cout <<this->players[currPlayersIndex].getPlayerName() << " please enter your curr row again :";
-            cin >> currRow;
-            currRow--;
+
+        int col,row;
+        cout << this->players[currPlayersIndex].getPlayerName() << " please enter the column that you want to play in :";
+        cin >> col;
+        cout <<this->players[currPlayersIndex].getPlayerName() << " please enter the row that you want to play in :";
+        cin >> row;
+        row--, col--;
+
+        while(!gameBoard.makePlayerMove(col, row, players[currPlayersIndex].getPlayerSymbol())){
+            cout << this->players[currPlayersIndex].getPlayerName() << " please enter the column that you want to play in :";
+            cin >> col;
+            cout << this->players[currPlayersIndex].getPlayerName() << " please enter the row that you want to play in :";
+            cin >> row;
+            col--, row--;
         }
+
         currPlayersIndex = (currPlayersIndex + 1) % 2;
     }
+    
     if (gameBoard.getGameState() == GameState::TIE_STATE){
         cout << "Tie" << endl;
     }
