@@ -6,7 +6,7 @@ void GameManager::runGame() {
     while(gameBoard.getGameState() == GameState::IN_PROGRESS_STATE){
         gameBoard.printGameBoard();
 
-        int col,row;
+        int col, row;
         cout << this->players[currPlayersIndex].getPlayerName() << " please enter the column that you want to play in :";
         cin >> col;
         cout <<this->players[currPlayersIndex].getPlayerName() << " please enter the row that you want to play in :";
